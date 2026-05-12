@@ -6,11 +6,11 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Setup Python
@@ -21,8 +21,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install flask
 
-      - name: Run basic test (start app check)
-        run: |
-          python -c "import app; print('App imported successfully')"
+      - name: Show files (debug)
+        run: ls -R
+
+      - name: Run Flask import test
+        run: python -c "import app; print('APP OK 🚀')"
